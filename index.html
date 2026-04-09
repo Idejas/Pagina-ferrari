@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferrari en la Fórmula 1 - Historia y Legado</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --ferrari-red: #DC143C;
+            --ferrari-dark-red: #A50C28;
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --card-border: #1e1e1e;
+            --text-light: #e0e0e0;
+            --text-muted: #888;
+            --gold: #C9A84C;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* ===== LOGO BADGE ===== */
+        .ferrari-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .badge-img {
+            height: 52px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .badge-text-wrap {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .badge-scuderia {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .badge-ferrari {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.55rem;
+            letter-spacing: 3px;
+            color: var(--ferrari-red);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.97);
+            border-bottom: 2px solid var(--ferrari-red);
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            color: var(--text-light) !important;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover { color: var(--ferrari-red) !important; }
+
+        .navbar-toggler {
+            border-color: var(--ferrari-red);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28220, 20, 60, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0008 40%, #2d0010 70%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                -55deg, transparent, transparent 3px,
+                rgba(220,20,60,0.03) 3px, rgba(220,20,60,0.03) 6px
+            );
+        }
+
+        .hero-stripe {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 6px;
+            background: var(--ferrari-red);
+        }
+
+        .hero-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(8rem, 20vw, 18rem);
+            color: rgba(220,20,60,0.07);
+            position: absolute;
+            right: -2rem; bottom: -2rem;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Hero logo badge (large version) */
+        .hero-badge {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 16px rgba(220,20,60,0.5));
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 1;
+            letter-spacing: 3px;
+            color: #fff;
+        }
+
+        .hero-title .highlight { color: var(--ferrari-red); display: block; }
+
+        .hero-subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--ferrari-red);
+            margin: 1.5rem 0;
+        }
+
+        .hero-stats {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat .number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--ferrari-red);
+            display: block;
+            line-height: 1;
+        }
+
+        .hero-stat .label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-ferrari {
+            background-color: var(--ferrari-red);
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-ferrari:hover {
+            background-color: var(--ferrari-dark-red);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220,20,60,0.4);
+        }
+
+        .btn-ferrari-outline {
+            background: transparent;
+            color: var(--ferrari-red);
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 2px solid var(--ferrari-red);
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-ferrari-outline:hover {
+            background-color: var(--ferrari-red);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 5rem 0; }
+
+        .section-tag {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--ferrari-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 3px;
+            background: var(--ferrari-red);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-section { background-color: #0d0d0d; }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .quote-block {
+            border-left: 4px solid var(--ferrari-red);
+            padding: 1rem 1.5rem;
+            background: rgba(220,20,60,0.05);
+            margin: 1.5rem 0;
+        }
+
+        .quote-block p {
+            font-family: 'Oswald', sans-serif;
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .quote-block span { color: var(--text-muted); font-size: 0.85rem; }
+
+        .info-box {
+            padding: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-left: 3px solid var(--ferrari-red);
+            height: 100%;
+        }
+
+        .info-box h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--ferrari-red);
+            font-size: 1.5rem;
+        }
+
+        .info-box p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+
+        /* ===== TIMELINE ===== */
+        .timeline-section { background-color: var(--dark-bg); }
+
+        .timeline { position: relative; padding: 2rem 0; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--ferrari-red), transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 2rem);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: calc(50% + 2rem);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px; height: 14px;
+            background: var(--ferrari-red);
+            border-radius: 50%;
+            top: 1rem;
+            border: 2px solid var(--dark-bg);
+            box-shadow: 0 0 0 3px rgba(220,20,60,0.3);
+        }
+
+        .timeline-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-left: 3px solid var(--ferrari-red);
+            padding: 1.25rem 1.5rem;
+            max-width: 380px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .timeline-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--ferrari-red);
+            letter-spacing: 2px;
+        }
+
+        .timeline-event {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* ===== CAR CARDS ===== */
+        .cars-section { background-color: #0d0d0d; }
+
+        .car-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .car-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(220,20,60,0.2);
+            border-color: var(--ferrari-red);
+        }
+
+        /* Car photo */
+        .car-photo-wrap {
+            width: 100%;
+            height: 200px;
+            background-color: #1a0008;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .car-photo-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--card-bg));
+            pointer-events: none;
+        }
+
+        .car-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            filter: brightness(0.9) saturate(1.1);
+            transition: transform 0.4s ease;
+        }
+
+        .car-card:hover .car-photo { transform: scale(1.04); }
+
+
+        .car-card-header {
+            background: linear-gradient(135deg, var(--ferrari-red), var(--ferrari-dark-red));
+            padding: 1rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .car-card-header::after {
+            content: '';
+            position: absolute;
+            right: -20px; bottom: -20px;
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .car-year-badge {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.7);
+            display: block;
+        }
+
+        .car-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.7rem;
+            color: #fff;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .car-card-body { padding: 1.25rem 1.5rem; flex: 1; }
+
+        .car-description {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .car-spec {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.45rem 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 0.825rem;
+        }
+
+        .car-spec:last-child { border-bottom: none; }
+
+        .car-spec .spec-label {
+            color: var(--text-muted);
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+        }
+
+        .car-spec .spec-value {
+            color: var(--ferrari-red);
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .era-badge {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            background: rgba(220,20,60,0.15);
+            color: var(--ferrari-red);
+            border: 1px solid rgba(220,20,60,0.3);
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ===== CHAMPIONSHIPS ===== */
+        .champ-section {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #110005 50%, var(--dark-bg) 100%);
+        }
+
+        .champ-counter {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-top: 3px solid var(--ferrari-red);
+            transition: all 0.3s;
+        }
+
+        .champ-counter:hover {
+            background: rgba(220,20,60,0.05);
+            box-shadow: 0 5px 20px rgba(220,20,60,0.15);
+        }
+
+        .champ-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--ferrari-red);
+            line-height: 1;
+            display: block;
+        }
+
+        .champ-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== DRIVERS ===== */
+        .drivers-section { background-color: #0d0d0d; }
+
+        .driver-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .driver-card:hover {
+            border-color: var(--ferrari-red);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(220,20,60,0.15);
+        }
+
+        .driver-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: rgba(220,20,60,0.3);
+            line-height: 1;
+        }
+
+        .driver-name {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.25rem;
+        }
+
+        .driver-nationality { font-size: 0.8rem; color: var(--text-muted); margin: 0.25rem 0; }
+
+        .driver-titles {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin: 0.25rem 0;
+        }
+
+        .driver-years { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* Table */
+        .table-ferrari thead tr { border-bottom: 2px solid var(--ferrari-red); }
+
+        .table-ferrari th {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--ferrari-red);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            background: rgba(220,20,60,0.1);
+        }
+
+        .table-ferrari td { vertical-align: middle; border-color: var(--card-border); }
+
+        .table-ferrari tbody tr:hover { background: rgba(220,20,60,0.04); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #050505;
+            border-top: 2px solid var(--ferrari-red);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--ferrari-red);
+            letter-spacing: 3px;
+        }
+
+        .footer-text { color: var(--text-muted); font-size: 0.85rem; line-height: 1.7; }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link:hover { color: var(--ferrari-red); }
+
+        .footer-divider { border-color: #1e1e1e; margin: 2rem 0 1rem; }
+
+        .footer-bottom { color: #444; font-size: 0.78rem; text-align: center; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .timeline::before { left: 1rem; }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-right: 0;
+                padding-left: 3.5rem;
+            }
+
+            .timeline-dot { left: 1rem; }
+            .timeline-card { max-width: 100%; }
+            .hero-stats { gap: 1.5rem; }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-ferrari { color: var(--ferrari-red); }
+        .bg-ferrari   { background-color: var(--ferrari-red); }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand text-decoration-none" href="#">
+                <div class="ferrari-badge">
+                    <img src="ferrari-logo.webp" alt="Scuderia Ferrari" class="badge-img">
+                    <div class="badge-text-wrap">
+                        <span class="badge-scuderia">Scuderia</span>
+                        <span class="badge-ferrari">FERRARI</span>
+                    </div>
+                </div>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#historia">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#timeline">Cronología</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#autos">Autos Icónicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#campeonatos">Campeonatos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pilotos">Pilotos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+        <div class="hero-stripe"></div>
+        <div class="hero-number">F1</div>
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Big badge -->
+                    <div class="hero-badge">
+                        <img src="ferrari-logo.webp" alt="Scuderia Ferrari Logo">
+                    </div>
+
+                    <p class="section-tag">Desde 1950 hasta hoy</p>
+                    <h1 class="hero-title">
+                        LA SCUDERIA
+                        <span class="highlight">FERRARI</span>
+                        EN F1
+                    </h1>
+                    <div class="hero-divider"></div>
+                    <p class="hero-subtitle">Historia &middot; Pasión &middot; Velocidad</p>
+                    <p class="mt-3" style="color: var(--text-muted); max-width: 520px; line-height: 1.8;">
+                        El equipo más icónico de la Fórmula 1. Más de 75 años de gloria, lágrimas,
+                        velocidad y la pasión italiana que no tiene igual en el automovilismo mundial.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="number">16</span>
+                            <span class="label">Copas de<br>Constructores</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="number">15</span>
+                            <span class="label">Títulos de<br>Pilotos</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="number">243</span>
+                            <span class="label">Victorias<br>en GP</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="number">75+</span>
+                            <span class="label">Años en<br>la Parrilla</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 d-flex gap-3 flex-wrap">
+                        <a href="#historia" class="btn-ferrari">Conocer Historia</a>
+                        <a href="#autos" class="btn-ferrari-outline">Ver Autos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HISTORIA ===== -->
+    <section class="about-section" id="historia">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <p class="section-tag">El Origen</p>
+                    <h2 class="section-title">La Historia de<br>La Scuderia</h2>
+                    <div class="section-divider"></div>
+                    <p class="about-text">
+                        La Scuderia Ferrari fue fundada por <strong style="color: var(--text-light)">Enzo Ferrari</strong> en 1929
+                        en Módena, Italia, inicialmente como equipo de carreras para Alfa Romeo.
+                        En 1947 nació el primer Ferrari como fabricante independiente, y con la
+                        llegada del Campeonato Mundial de Fórmula 1 en 1950, Ferrari fue uno de los
+                        primeros equipos en competir.
+                    </p>
+                    <br>
+                    <p class="about-text">
+                        El <strong style="color: var(--text-light)">18 de mayo de 1951</strong>, José Froilán González
+                        logró la primera victoria de Ferrari en un Gran Premio de F1 en Silverstone,
+                        derrotando al hasta entonces dominante Alfa Romeo. Desde ese momento, la leyenda comenzó.
+                    </p>
+                    <div class="quote-block mt-4">
+                        <p>"Vendí mi alma al diablo el día que construí mi primer auto de carreras."</p>
+                        <span>— Enzo Ferrari</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="info-box">
+                                <h4>1929</h4>
+                                <p>Fundación de la Scuderia Ferrari por Enzo Ferrari en Módena, Italia.</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="info-box">
+                                <h4>1950</h4>
+                                <p>Primera temporada completa en la F1 con el modelo 125 F1.</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="info-box">
+                                <h4>1952</h4>
+                                <p>Primer campeonato de pilotos con Alberto Ascari y el Ferrari 500.</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="info-box">
+                                <h4>1988</h4>
+                                <p>Fallece Enzo Ferrari a los 90 años; su legado permanece eterno.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TIMELINE ===== -->
+    <section class="timeline-section" id="timeline">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-tag">Cronología</p>
+                <h2 class="section-title">Momentos Clave</h2>
+                <div class="section-divider mx-auto"></div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">1950</span>
+                        <p class="timeline-event">Debut en la Fórmula 1</p>
+                        <p class="timeline-desc">Ferrari participa en la primera temporada oficial del Campeonato Mundial de F1 con el 125 F1. Alberto Ascari, Luigi Villoresi y Raymond Sommer fueron sus primeros pilotos.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">1951</span>
+                        <p class="timeline-event">Primera Victoria en GP</p>
+                        <p class="timeline-desc">José Froilán González gana el Gran Premio de Gran Bretaña en Silverstone con el Ferrari 375. Es la primera victoria de Ferrari en la historia de la F1.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">1952–1953</span>
+                        <p class="timeline-event">Dominio de Ascari</p>
+                        <p class="timeline-desc">Alberto Ascari gana dos campeonatos mundiales consecutivos con el Ferrari 500 F2, logrando 9 victorias seguidas, un récord que perduró décadas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">1975–1977</span>
+                        <p class="timeline-event">La Era Lauda</p>
+                        <p class="timeline-desc">Niki Lauda lleva al Ferrari 312 T a dos campeonatos mundiales (1975 y 1977). Su accidente en el Nürburgring en 1976 y su regreso heroico son parte de la leyenda.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">2000–2004</span>
+                        <p class="timeline-event">La Época Dorada con Schumacher</p>
+                        <p class="timeline-desc">Michael Schumacher y Ferrari dominan la F1 de forma absoluta, ganando 5 campeonatos de constructores y 5 de pilotos consecutivos. El F2004 es considerado el mejor auto de todos los tiempos.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">2007–2008</span>
+                        <p class="timeline-event">Títulos con Räikkönen y la Batalla de Massa</p>
+                        <p class="timeline-desc">Kimi Räikkönen gana el campeonato de 2007 por un solo punto. Felipe Massa estuvo a un punto de ser campeón en 2008, perdiéndolo en el último giro del último gran premio.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">2022</span>
+                        <p class="timeline-event">Resurgimiento con Leclerc</p>
+                        <p class="timeline-desc">Con el nuevo reglamento de efecto suelo, el Ferrari F1-75 demuestra ser uno de los más veloces. Charles Leclerc lidera el campeonato durante gran parte de la temporada, renovando las esperanzas de los Tifosi.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">2025</span>
+                        <p class="timeline-event">El Campeón Llega a Maranello</p>
+                        <p class="timeline-desc">Lewis Hamilton, 7 veces campeón del mundo, se une a la Scuderia Ferrari junto a Charles Leclerc, creando uno de los line-ups de pilotos más emocionantes en la historia reciente del deporte.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AUTOS ICÓNICOS ===== -->
+    <section class="cars-section" id="autos">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-tag">Los Monoplazas</p>
+                <h2 class="section-title">Autos Icónicos de Ferrari</h2>
+                <div class="section-divider mx-auto"></div>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                    A lo largo de más de siete décadas, Ferrari ha creado algunas de las máquinas de carreras
+                    más impresionantes y exitosas de la historia de la Fórmula 1.
+                </p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+
+                <!-- Ferrari 312 T -->
+                <div class="col-md-8 col-lg-4">
+                    <div class="car-card">
+                        <div class="car-photo-wrap">
+                            <img src="car_312t.jpg" alt="Ferrari 312 T — Niki Lauda 1976" class="car-photo">
+                        </div>
+                        <div class="car-card-header">
+                            <span class="car-year-badge">1975 – 1979</span>
+                            <h3 class="car-name">Ferrari 312 T</h3>
+                        </div>
+                        <div class="car-card-body">
+                            <span class="era-badge">Era Lauda</span>
+                            <p class="car-description">El 312 T (Trasversale) introdujo la caja de cambios transversal para mejorar el centro de gravedad. Con él, Niki Lauda ganó en 1975 y 1977, y Jody Scheckter en 1979 con la versión T4. Uno de los monoplazas más icónicos de los 70s.</p>
+                            <div class="car-spec"><span class="spec-label">Motor</span><span class="spec-value">Flat-12 3.0L</span></div>
+                            <div class="car-spec"><span class="spec-label">Potencia</span><span class="spec-value">~485 CV</span></div>
+                            <div class="car-spec"><span class="spec-label">Piloto Destacado</span><span class="spec-value">Niki Lauda</span></div>
+                            <div class="car-spec"><span class="spec-label">Campeonatos</span><span class="spec-value">3 Títulos</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ferrari F2004 -->
+                <div class="col-md-8 col-lg-4">
+                    <div class="car-card">
+                        <div class="car-photo-wrap">
+                            <img src="car_f2004.jpg" alt="Ferrari F2004 — Michael Schumacher 2004" class="car-photo">
+                        </div>
+                        <div class="car-card-header">
+                            <span class="car-year-badge">2004</span>
+                            <h3 class="car-name">Ferrari F2004</h3>
+                        </div>
+                        <div class="car-card-body">
+                            <span class="era-badge">El Mejor de la Historia</span>
+                            <p class="car-description">Considerado el auto de F1 más dominante de todos los tiempos. Ganó 15 de 18 carreras en la temporada 2004. Michael Schumacher consiguió con él su 7º y último título mundial, siendo subcampeón su propio compañero Barrichello.</p>
+                            <div class="car-spec"><span class="spec-label">Motor</span><span class="spec-value">Ferrari 053 V10</span></div>
+                            <div class="car-spec"><span class="spec-label">Potencia</span><span class="spec-value">~900+ CV</span></div>
+                            <div class="car-spec"><span class="spec-label">Piloto Destacado</span><span class="spec-value">Michael Schumacher</span></div>
+                            <div class="car-spec"><span class="spec-label">Victorias</span><span class="spec-value">15 de 18 GPs</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ferrari F1-75 -->
+                <div class="col-md-8 col-lg-4">
+                    <div class="car-card">
+                        <div class="car-photo-wrap">
+                            <img src="car_f175.jpg" alt="Ferrari F1-75 — Charles Leclerc 2022" class="car-photo">
+                        </div>
+                        <div class="car-card-header">
+                            <span class="car-year-badge">2022</span>
+                            <h3 class="car-name">Ferrari F1-75</h3>
+                        </div>
+                        <div class="car-card-body">
+                            <span class="era-badge">Era Efecto Suelo</span>
+                            <p class="car-description">Con los nuevos reglamentos de 2022, Ferrari volvió a pelear por el título. Charles Leclerc dominó las primeras carreras y lideró el campeonato. El nombre rinde homenaje a los 75 años de historia de la Scuderia Ferrari.</p>
+                            <div class="car-spec"><span class="spec-label">Motor</span><span class="spec-value">Ferrari 066/7 V6 Híbrido</span></div>
+                            <div class="car-spec"><span class="spec-label">Potencia</span><span class="spec-value">~1000 CV</span></div>
+                            <div class="car-spec"><span class="spec-label">Piloto Destacado</span><span class="spec-value">Charles Leclerc</span></div>
+                            <div class="car-spec"><span class="spec-label">Victorias</span><span class="spec-value">4 Grandes Premios</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CAMPEONATOS ===== -->
+    <section class="champ-section" id="campeonatos">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-tag">Palmarés</p>
+                <h2 class="section-title">Campeonatos y Logros</h2>
+                <div class="section-divider mx-auto"></div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-6 col-md-3">
+                    <div class="champ-counter">
+                        <span class="champ-number">16</span>
+                        <p class="champ-title">Campeonatos de<br>Constructores</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="champ-counter">
+                        <span class="champ-number">15</span>
+                        <p class="champ-title">Campeonatos de<br>Pilotos</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="champ-counter">
+                        <span class="champ-number">243</span>
+                        <p class="champ-title">Victorias en<br>Grandes Premios</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="champ-counter">
+                        <span class="champ-number">800+</span>
+                        <p class="champ-title">Grandes Premios<br>Disputados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-9 mx-auto">
+                    <h4 class="text-center mb-4" style="font-family:'Oswald';color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;font-size:.85rem;">Selección de Títulos de Constructores</h4>
+                    <div style="background:var(--card-bg);border:1px solid var(--card-border);overflow:hidden;">
+                        <table class="table table-dark table-ferrari mb-0" style="background:transparent;">
+                            <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>Campeón Piloto</th>
+                                    <th>Monoplaza</th>
+                                    <th>Victorias</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="color:var(--ferrari-red);font-family:'Bebas Neue';font-size:1.15rem;">1952</td>
+                                    <td style="color:var(--text-light);">Alberto Ascari</td>
+                                    <td style="color:var(--text-muted);font-size:.875rem;">Ferrari 500 F2</td>
+                                    <td style="color:var(--gold);font-family:'Oswald';font-weight:700;">6</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--ferrari-red);font-family:'Bebas Neue';font-size:1.15rem;">1953</td>
+                                    <td style="color:var(--text-light);">Alberto Ascari</td>
+                                    <td style="color:var(--text-muted);font-size:.875rem;">Ferrari 500 F2</td>
+                                    <td style="color:var(--gold);font-family:'Oswald';font-weight:700;">5</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--ferrari-red);font-family:'Bebas Neue';font-size:1.15rem;">1975</td>
+                                    <td style="color:var(--text-light);">Niki Lauda</td>
+                                    <td style="color:var(--text-muted);font-size:.875rem;">Ferrari 312 T</td>
+                                    <td style="color:var(--gold);font-family:'Oswald';font-weight:700;">9</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--ferrari-red);font-family:'Bebas Neue';font-size:1.15rem;">1979</td>
+                                    <td style="color:var(--text-light);">Jody Scheckter</td>
+                                    <td style="color:var(--text-muted);font-size:.875rem;">Ferrari 312 T4</td>
+                                    <td style="color:var(--gold);font-family:'Oswald';font-weight:700;">6</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--ferrari-red);font-family:'Bebas Neue';font-size:1.15rem;">2000</td>
+                                    <td style="color:var(--text-light);">Michael Schumacher</td>
+                                    <td style="color:var(--text-muted);font-size:.875rem;">Ferrari F1-2000</td>
+                                    <td style="color:var(--gold);font-family:'Oswald';font-weight:700;">10</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--ferrari-red);font-family:'Bebas Neue';font-size:1.15rem;">2002</td>
+                                    <td style="color:var(--text-light);">Michael Schumacher</td>
+                                    <td style="color:var(--text-muted);font-size:.875rem;">Ferrari F2002</td>
+                                    <td style="color:var(--gold);font-family:'Oswald';font-weight:700;">15</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--ferrari-red);font-family:'Bebas Neue';font-size:1.15rem;">2004</td>
+                                    <td style="color:var(--text-light);">Michael Schumacher</td>
+                                    <td style="color:var(--text-muted);font-size:.875rem;">Ferrari F2004</td>
+                                    <td style="color:var(--gold);font-family:'Oswald';font-weight:700;">15</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--ferrari-red);font-family:'Bebas Neue';font-size:1.15rem;">2007</td>
+                                    <td style="color:var(--text-light);">Kimi Räikkönen</td>
+                                    <td style="color:var(--text-muted);font-size:.875rem;">Ferrari F2007</td>
+                                    <td style="color:var(--gold);font-family:'Oswald';font-weight:700;">6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PILOTOS ===== -->
+    <section class="drivers-section" id="pilotos">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-tag">Leyendas</p>
+                <h2 class="section-title">Pilotos Legendarios</h2>
+                <div class="section-divider mx-auto"></div>
+                <p style="color:var(--text-muted);max-width:550px;margin:0 auto;">Algunos de los más grandes pilotos de la historia han vestido el overol rojo de Ferrari.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="driver-card">
+                        <div class="driver-number">1</div>
+                        <p class="driver-name">Alberto Ascari</p>
+                        <p class="driver-nationality">&#127470;&#127481; Italia</p>
+                        <p class="driver-titles">&#127942; 2 Títulos</p>
+                        <p class="driver-years">1950 – 1954</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="driver-card">
+                        <div class="driver-number">12</div>
+                        <p class="driver-name">Niki Lauda</p>
+                        <p class="driver-nationality">&#127462;&#127481; Austria</p>
+                        <p class="driver-titles">&#127942; 2 Títulos</p>
+                        <p class="driver-years">1974 – 1977</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="driver-card">
+                        <div class="driver-number">1</div>
+                        <p class="driver-name">Jody Scheckter</p>
+                        <p class="driver-nationality">&#127487;&#127462; Sudáfrica</p>
+                        <p class="driver-titles">&#127942; 1 Título</p>
+                        <p class="driver-years">1979 – 1980</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="driver-card">
+                        <div class="driver-number">1</div>
+                        <p class="driver-name">Michael Schumacher</p>
+                        <p class="driver-nationality">&#127465;&#127466; Alemania</p>
+                        <p class="driver-titles">&#127942; 5 Títulos</p>
+                        <p class="driver-years">1996 – 2006</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="driver-card">
+                        <div class="driver-number">7</div>
+                        <p class="driver-name">Kimi Räikkönen</p>
+                        <p class="driver-nationality">&#127467;&#127470; Finlandia</p>
+                        <p class="driver-titles">&#127942; 1 Título</p>
+                        <p class="driver-years">2007–2009 / 2014–2018</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="driver-card">
+                        <div class="driver-number">16</div>
+                        <p class="driver-name">Charles Leclerc</p>
+                        <p class="driver-nationality">&#127474;&#127464; Mónaco</p>
+                        <p class="driver-titles">&#11088; Futuro Campeón</p>
+                        <p class="driver-years">2019 – Presente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <!-- Footer logo -->
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                        <img src="ferrari-logo.webp" alt="Scuderia Ferrari" style="height:56px;width:auto;object-fit:contain;flex-shrink:0;">
+                        <p class="footer-brand mb-0">FERRARI F1</p>
+                    </div>
+                    <p class="footer-text mt-2">
+                        Una página dedicada a la historia y el legado de la Scuderia Ferrari
+                        en la Fórmula 1. Más de 75 años de pasión, velocidad y el espíritu
+                        italiano que define al deporte más veloz del mundo.
+                    </p>
+                    <p class="mt-3" style="color:#333;font-size:.78rem;">
+                        <i class="bi bi-mortarboard-fill me-1" style="color:var(--ferrari-red);"></i>
+                        Proyecto académico — Ingeniería de Sistemas, 5to Semestre
+                    </p>
+                </div>
+                <div class="col-lg-2 col-6 mb-4 mb-lg-0">
+                    <p style="font-family:'Oswald';font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--ferrari-red);margin-bottom:1rem;">Secciones</p>
+                    <a href="#historia" class="footer-link">Historia</a>
+                    <a href="#timeline" class="footer-link">Cronología</a>
+                    <a href="#autos" class="footer-link">Autos Icónicos</a>
+                    <a href="#campeonatos" class="footer-link">Campeonatos</a>
+                    <a href="#pilotos" class="footer-link">Pilotos</a>
+                </div>
+                <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                    <p style="font-family:'Oswald';font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--ferrari-red);margin-bottom:1rem;">Datos Rápidos</p>
+                    <p class="footer-text"><span class="text-ferrari">Fundación:</span> 1929, Módena, Italia</p>
+                    <p class="footer-text"><span class="text-ferrari">Sede:</span> Maranello, Italia</p>
+                    <p class="footer-text"><span class="text-ferrari">Color oficial:</span> Rosso Corsa</p>
+                    <p class="footer-text"><span class="text-ferrari">Apodo aficionados:</span> Los Tifosi</p>
+                </div>
+                <div class="col-lg-3">
+                    <p style="font-family:'Oswald';font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--ferrari-red);margin-bottom:1rem;">Recordando a Enzo</p>
+                    <div class="quote-block">
+                        <p>"El segundo lugar es simplemente el primero de los perdedores."</p>
+                        <span>— Enzo Ferrari</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="footer-divider">
+            <p class="footer-bottom">
+                &copy; 2025 Ferrari F1 Historia &nbsp;&mdash;&nbsp; Proyecto Académico de Ingeniería de Sistemas &nbsp;&mdash;&nbsp;
+                HTML + CSS + Bootstrap 5 &nbsp;&mdash;&nbsp;
+                <span class="text-ferrari">Forza Ferrari &#127945;</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS (requerido para navbar responsive) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
